@@ -1,4 +1,4 @@
-# Welcome to your RN demos by frankudoags 👋
+# RN demos by frankudoags 👋
 
 This is where I upload all of my react native animations and code snipets for components I found annoying to build
 
