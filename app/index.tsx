@@ -6,13 +6,20 @@ export default function Index() {
   return (
     <SafeAreaView style={{
       flex: 1,
-      justifyContent: "center",
       alignItems: "center",
       gap: 20,
     }}>
+      <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+        RN Demos
+      </Text>
       <Link href="/carousel">
         <Text>
-          Sliding Image Carousel
+          1. Sliding Image Carousel
+        </Text>
+      </Link>
+      <Link href="/min-max-range-slider">
+        <Text>
+         2. Min-Max Range Slider
         </Text>
       </Link>
     </SafeAreaView>
