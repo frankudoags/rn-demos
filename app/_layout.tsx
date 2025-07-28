@@ -5,9 +5,10 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
     <Stack initialRouteName="carousel">
-      <Stack.Screen name="carousel" options={stackOptions.carousel} />
+      <Stack.Screen name="carousel" options={stackOptions.noHeader} />
       <Stack.Screen name="index" options={stackOptions.header} />
       <Stack.Screen name="min-max-range-slider" options={stackOptions.header} />
+      <Stack.Screen name="synced-flat-lists" options={stackOptions.noHeader} />
     </Stack>
     </GestureHandlerRootView>
   );
@@ -25,7 +26,7 @@ const stackOptions: Record<string, StackScreenOptions> = {
     title: "Home",
   },
 
-  carousel: {
+  noHeader: {
     headerShown: false,
   },
 }

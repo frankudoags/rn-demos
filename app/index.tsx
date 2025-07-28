@@ -19,7 +19,12 @@ export default function Index() {
       </Link>
       <Link href="/min-max-range-slider">
         <Text>
-         2. Min-Max Range Slider
+          2. Min-Max Range Slider
+        </Text>
+      </Link>
+      <Link href="/synced-flat-lists">
+        <Text>
+          3. Synced Flat Lists
         </Text>
       </Link>
     </SafeAreaView>
