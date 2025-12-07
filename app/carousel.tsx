@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, View } from 'react-native'
+import { StatusBar, View } from 'react-native'
 import React from 'react'
 import Slider from '@/components/carousel/Slider'
 
@@ -18,5 +18,3 @@ const Carousel = () => {
 }
 
 export default Carousel
-
-const styles = StyleSheet.create({})

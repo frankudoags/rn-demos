@@ -55,25 +55,19 @@ const MinMaxRangeSlider = ({
 
   const isInvalid = sliderWidth <= 0 || totalSteps <= 0 || min >= max;
 
-  if (isInvalid) {
-    console.warn(
-      `[MinMaxRangeSlider] Invalid configuration: sliderWidth=${sliderWidth}, min=${min}, max=${max}, step=${step}`
-    );
-    return null;
-  }
-
+  
   const pixelsPerStep = sliderWidth / totalSteps;
   const minGapPx = pixelsPerStep * minGapInSteps;
-
+  
   const position = useSharedValue(0);
   const position2 = useSharedValue(sliderWidth);
-
+  
   const scaleLeft = useSharedValue(1);
   const scaleRight = useSharedValue(1);
-
+  
   const context = useSharedValue(0);
   const context2 = useSharedValue(0);
-
+  
   useEffect(() => {
     if (reset) {
       position.value = 0;
@@ -81,69 +75,76 @@ const MinMaxRangeSlider = ({
       runOnJS(onValueChange)({ min, max });
     }
   }, [reset]);
-
+  
   const updateValues = () => {
     'worklet';
     const minSteps = Math.round(position.value / pixelsPerStep);
     const maxSteps = Math.round(position2.value / pixelsPerStep);
     const rangeMin = min + minSteps * step;
     const rangeMax = min + maxSteps * step;
-
+    
     runOnJS(onValueChange)({
       min: Math.min(rangeMin, rangeMax - step),
       max: Math.max(rangeMax, rangeMin + step),
     });
   };
-
+  
   const leftGesture = Gesture.Pan()
-    .onBegin(() => {
-      context.value = position.value;
-      scaleLeft.value = withTiming(1.3, { duration: 300 }); // Optional: Scale up the left thumb on touch
-    })
-    .onUpdate(e => {
-      let newPos = context.value + e.translationX;
-      newPos = Math.max(0, Math.min(newPos, position2.value - minGapPx));
-      position.value = newPos;
-      updateValues();
-    })
-    .onEnd(() => {
-      scaleLeft.value = withTiming(1, { duration: 300 }); // Reset scale on release
-    });
-
+  .onBegin(() => {
+    context.value = position.value;
+    scaleLeft.value = withTiming(1.3, { duration: 300 }); // Optional: Scale up the left thumb on touch
+  })
+  .onUpdate(e => {
+    let newPos = context.value + e.translationX;
+    newPos = Math.max(0, Math.min(newPos, position2.value - minGapPx));
+    position.value = newPos;
+    updateValues();
+  })
+  .onEnd(() => {
+    scaleLeft.value = withTiming(1, { duration: 300 }); // Reset scale on release
+  });
+  
   const rightGesture = Gesture.Pan()
-    .onBegin(() => {
-      context2.value = position2.value;
-      scaleRight.value = withTiming(1.3, { duration: 300 }); // Optional: Scale up the right thumb on touch
-    })
-    .onUpdate(e => {
-      let newPos = context2.value + e.translationX;
-      newPos = Math.min(sliderWidth, Math.max(newPos, position.value + minGapPx));
-      position2.value = newPos;
-      updateValues();
-    })
-    .onEnd(() => {
-      scaleRight.value = withTiming(1, { duration: 300 }); // Reset scale on release
-    });
-
+  .onBegin(() => {
+    context2.value = position2.value;
+    scaleRight.value = withTiming(1.3, { duration: 300 }); // Optional: Scale up the right thumb on touch
+  })
+  .onUpdate(e => {
+    let newPos = context2.value + e.translationX;
+    newPos = Math.min(sliderWidth, Math.max(newPos, position.value + minGapPx));
+    position2.value = newPos;
+    updateValues();
+  })
+  .onEnd(() => {
+    scaleRight.value = withTiming(1, { duration: 300 }); // Reset scale on release
+  });
+  
   const leftThumbStyle = useAnimatedStyle(() => ({
     transform: [
       { translateX: position.value },
       { scale: scaleLeft.value },
     ],
   }));
-
+  
   const rightThumbStyle = useAnimatedStyle(() => ({
     transform: [
       { translateX: position2.value },
       { scale: scaleRight.value },
     ],
   }));
-
+  
   const trackStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: position.value }],
     width: position2.value - position.value,
   }));
-
+  
+  if (isInvalid) {
+    console.warn(
+      `[MinMaxRangeSlider] Invalid configuration: sliderWidth=${sliderWidth}, min=${min}, max=${max}, step=${step}`
+    );
+    return null;
+  }
+  
   return (
     <View style={[styles.sliderContainer, { width: sliderWidth }]}>
       <View style={styles.sliderBack} />
