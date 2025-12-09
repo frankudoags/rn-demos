@@ -9,6 +9,7 @@ export default function RootLayout() {
       <Stack.Screen name="index" options={stackOptions.header} />
       <Stack.Screen name="min-max-range-slider" options={stackOptions.header} />
       <Stack.Screen name="synced-flat-lists" options={stackOptions.noHeader} />
+      <Stack.Screen name="mood-selector" options={stackOptions.noHeader} />
     </Stack>
     </GestureHandlerRootView>
   );

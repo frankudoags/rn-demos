@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
+    "@react-native-community/slider": "^5.1.1",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
+    "@shopify/react-native-skia": "^2.4.7",
     "expo": "^54.0.27",
     "expo-blur": "~15.0.8",
     "expo-constants": "~18.0.11",

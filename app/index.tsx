@@ -1,10 +1,10 @@
+import { SafeAreaContainer } from "@/components/ui/safe-area-container";
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "react-native";
 
 export default function Index() {
   return (
-    <SafeAreaView style={{
+    <SafeAreaContainer style={{
       flex: 1,
       alignItems: "center",
       gap: 20,
@@ -27,6 +27,11 @@ export default function Index() {
           3. Synced Flat Lists
         </Text>
       </Link>
-    </SafeAreaView>
+      <Link href="/mood-selector">
+        <Text>
+          4. Mood Selector
+        </Text>
+      </Link>
+    </SafeAreaContainer>
   );
 }

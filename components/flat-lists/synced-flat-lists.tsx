@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
+import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import React, { useRef } from 'react'
 import { Image } from 'expo-image';
 import { DUMMY_IMAGES } from '../image-list';
