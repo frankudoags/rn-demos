@@ -32,6 +32,11 @@ export default function Index() {
           4. Mood Selector
         </Text>
       </Link>
+      <Link href="/sine-carousel">
+        <Text>
+          5. Sine Carousel
+        </Text>
+      </Link>
     </SafeAreaContainer>
   );
 }
